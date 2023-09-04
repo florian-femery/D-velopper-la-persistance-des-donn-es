@@ -1,0 +1,16 @@
+1.
+CREATE USER 'util1' IDENTIFIED BY 'password';
+CREATE USER 'util2' IDENTIFIED BY 'password';
+CREATE USER 'util3' IDENTIFIED BY 'password';
+
+2.
+GRANT ALL PRIVILEGES ON Papyrus.* TO 'util1';
+
+3.
+GRANT SELECT PRIVILEGES ON Papyrus.* TO 'util2';
+
+4.
+GRANT select 
+ON Papyrus.Fournisseur
+TO util3;
+
