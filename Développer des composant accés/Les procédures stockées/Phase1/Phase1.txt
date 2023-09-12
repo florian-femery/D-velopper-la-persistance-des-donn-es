@@ -1,0 +1,12 @@
+DELIMITER |
+
+CREATE PROCEDURE Lst_fournis()
+BEGIN
+    SELECT numfou, numcom FROM Entcom;
+    END |
+
+DELIMITER ;
+
+SHOW CREATE PROCEDURE Lst_fournis;
+
+CALL Lst_fournis;

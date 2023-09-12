@@ -1,0 +1,19 @@
+DELIMITER |
+
+CREATE PROCEDURE CA_Fournisseur(
+    In numfou varchar (25), 
+    In annee date(10)
+)
+
+BEGIN
+    SELECT Fournisseur.numfou, Fournisseur.nomfou, SUM(ligcom.qtecde * ligcom.priuni * 1.2)   
+    FROM Fournisseur
+    JOIN Entcom ON Entcom.numfou = Fournisseur.numfou
+    JOIN Ligcom ON Ligcom.numcom = Entcom.numcom
+    WHERE YEAR (datcom) = annee AND Fournisseur.numfou = numfou
+    GROUP BY Fournisseur.numfou, nomfou;
+END |
+
+DELIMITER ;
+
+CALL CA_Fournisseur(66, 2018);

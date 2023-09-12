@@ -1,0 +1,15 @@
+DELIMITER |
+
+CREATE PROCEDURE Lst_Commandes(In obscom Varchar(50))
+
+BEGIN
+   SELECT Produit.codart, Produit.libart
+	FROM Produit
+         INNER JOIN Ligcom ON Produit.codart = Ligcom.codart
+         INNER JOIN Entcom ON Ligcom.numcom = Entcom.numcom
+	WHERE Entcom.obscom LIKE '%urgent%';
+END |
+
+DELIMITER ;
+
+CALL Lst_Commandes('urgent');
