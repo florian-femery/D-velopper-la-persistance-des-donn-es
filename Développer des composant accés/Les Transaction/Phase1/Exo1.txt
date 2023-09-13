@@ -1,0 +1,20 @@
+    -Que concluez-vous ?
+J'en conclu que la transaction ne pourra pas s'effectuer car 
+il manque l'instruction "COMMIT" qui va rendre effective les modifications dans la base de données.
+
+
+    -Les données sont-elles modifiables par d'autres utilisateurs 
+    (ouvrez une nouvelle fenêtre de requête pour interroger le fournisseur 120 par une instruction SELECT) ?
+Oui les données sont modifiables par d'autre utilisateur, sûrement car les tables ne sont pas LOCK.
+
+
+    -La transaction est-elle terminée ?
+ Non pour terminer la transaction il faut effectuer le COMMIT;
+
+
+    -Comment rendre la modification permanente ?
+Il faut effecteur le COMMIT
+
+
+    -Comment annuler la transaction ?
+En effectuant un ROLLBACK;    
