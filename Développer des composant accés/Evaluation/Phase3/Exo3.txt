@@ -1,0 +1,27 @@
+DELIMITER //
+
+CREATE TRIGGER CheckShippingCountry
+BEFORE INSERT ON `order details`
+FOR EACH ROW
+BEGIN
+  DECLARE clientCountry VARCHAR(15);
+  DECLARE supplierCountry VARCHAR(15);
+
+  -- Obtenir le pays du client
+  SELECT customers.Country INTO clientCountry
+  FROM customers
+  JOIN orders ON customers.CustomerID = NEW.OrderID;
+
+  -- Obtenir le pays du fournisseur du produit
+  SELECT suppliers.Country INTO supplierCountry
+  FROM suppliers
+  JOIN products ON suppliers.SupplierID = NEW.ProductID;
+
+  -- Vérifier si les pays correspondent
+  IF clientCountry <> supplierCountry THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'Le client et le fournisseur ne sont pas dans le même pays pour ce produit.';
+  END IF;
+END //
+
+DELIMITER ;
